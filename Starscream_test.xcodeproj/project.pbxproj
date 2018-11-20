@@ -7,21 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F7D09C882B0030E2D40C123 /* Pods_Starscream_test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF1E67A871346F572F99EC3B /* Pods_Starscream_test.framework */; };
+		69413D4621A2A0C200204EF2 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69413D4521A2A0C200204EF2 /* APIRequest.swift */; };
 		695FA52521A27D73001F8D59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695FA52421A27D73001F8D59 /* AppDelegate.swift */; };
 		695FA52721A27D73001F8D59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695FA52621A27D73001F8D59 /* ViewController.swift */; };
-		695FA52A21A27D73001F8D59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 695FA52821A27D73001F8D59 /* Main.storyboard */; };
 		695FA52C21A27D75001F8D59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 695FA52B21A27D75001F8D59 /* Assets.xcassets */; };
 		695FA52F21A27D75001F8D59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 695FA52D21A27D75001F8D59 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		206440B131C46BF48C481957 /* Pods-Starscream_test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Starscream_test.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Starscream_test/Pods-Starscream_test.debug.xcconfig"; sourceTree = "<group>"; };
+		516726BE6738BBB763E87F24 /* Pods-Starscream_test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Starscream_test.release.xcconfig"; path = "Pods/Target Support Files/Pods-Starscream_test/Pods-Starscream_test.release.xcconfig"; sourceTree = "<group>"; };
+		69413D4521A2A0C200204EF2 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		695FA52121A27D73001F8D59 /* Starscream_test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Starscream_test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		695FA52421A27D73001F8D59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		695FA52621A27D73001F8D59 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		695FA52921A27D73001F8D59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		695FA52B21A27D75001F8D59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		695FA52E21A27D75001F8D59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		695FA53021A27D75001F8D59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DF1E67A871346F572F99EC3B /* Pods_Starscream_test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Starscream_test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F7D09C882B0030E2D40C123 /* Pods_Starscream_test.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E929BC92F7A15C257798505 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				206440B131C46BF48C481957 /* Pods-Starscream_test.debug.xcconfig */,
+				516726BE6738BBB763E87F24 /* Pods-Starscream_test.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		512FAF5BE68AB56D5E8B5CF2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF1E67A871346F572F99EC3B /* Pods_Starscream_test.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		695FA51821A27D73001F8D59 = {
 			isa = PBXGroup;
 			children = (
 				695FA52321A27D73001F8D59 /* Starscream_test */,
 				695FA52221A27D73001F8D59 /* Products */,
+				2E929BC92F7A15C257798505 /* Pods */,
+				512FAF5BE68AB56D5E8B5CF2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,7 +80,7 @@
 			children = (
 				695FA52421A27D73001F8D59 /* AppDelegate.swift */,
 				695FA52621A27D73001F8D59 /* ViewController.swift */,
-				695FA52821A27D73001F8D59 /* Main.storyboard */,
+				69413D4521A2A0C200204EF2 /* APIRequest.swift */,
 				695FA52B21A27D75001F8D59 /* Assets.xcassets */,
 				695FA52D21A27D75001F8D59 /* LaunchScreen.storyboard */,
 				695FA53021A27D75001F8D59 /* Info.plist */,
@@ -71,9 +95,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 695FA53321A27D75001F8D59 /* Build configuration list for PBXNativeTarget "Starscream_test" */;
 			buildPhases = (
+				85FA251AAA31306BEE977683 /* [CP] Check Pods Manifest.lock */,
 				695FA51D21A27D73001F8D59 /* Sources */,
 				695FA51E21A27D73001F8D59 /* Frameworks */,
 				695FA51F21A27D73001F8D59 /* Resources */,
+				FC00A5C623787DC0F729DE42 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -124,11 +150,51 @@
 			files = (
 				695FA52F21A27D75001F8D59 /* LaunchScreen.storyboard in Resources */,
 				695FA52C21A27D75001F8D59 /* Assets.xcassets in Resources */,
-				695FA52A21A27D73001F8D59 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		85FA251AAA31306BEE977683 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Starscream_test-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC00A5C623787DC0F729DE42 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Starscream_test/Pods-Starscream_test-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Starscream_test/Pods-Starscream_test-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		695FA51D21A27D73001F8D59 /* Sources */ = {
@@ -137,20 +203,13 @@
 			files = (
 				695FA52721A27D73001F8D59 /* ViewController.swift in Sources */,
 				695FA52521A27D73001F8D59 /* AppDelegate.swift in Sources */,
+				69413D4621A2A0C200204EF2 /* APIRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		695FA52821A27D73001F8D59 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				695FA52921A27D73001F8D59 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		695FA52D21A27D75001F8D59 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -280,6 +339,7 @@
 		};
 		695FA53421A27D75001F8D59 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 206440B131C46BF48C481957 /* Pods-Starscream_test.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -297,6 +357,7 @@
 		};
 		695FA53521A27D75001F8D59 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 516726BE6738BBB763E87F24 /* Pods-Starscream_test.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
