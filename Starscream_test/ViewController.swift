@@ -8,41 +8,12 @@
 
 import UIKit
 import Starscream
-import SwiftyJSON
 
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
 
-
-    func jsonToString(x:Dictionary<String, Any>) -> String
-    {
-        do{
-            let jsonData = try JSONSerialization.data(withJSONObject: x, options: [])
-            let jsonStr = String(bytes: jsonData, encoding: .utf8)!
-//            print(jsonStr)
-
-            return jsonStr
-
-        } catch let error {
-            return (error as! String)
-        }
-    }
-
-
-    let insideDict:[String:Any] =
-        [
-            "OMSId":1,
-            "InstrumentId": 2,
-            "Interval":60,
-            "IncludeLastCount":100
-    ]
-
-
-
-
     let socket = WebSocket(url: URL(string: "wss://api.bauhinia.me/WSGateway/")!)
-
 
     // UIPickerView.
     private var myUIPicker: UIPickerView!
@@ -86,17 +57,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     // ****************************************************
 
 
-// ********************************************************************
-
-
-
-
-
-//
-//    if let encodeData = try? JSONEncoder().encode(obj) {
-//        let path =
-//    }
-
 
 
 //*********************************************
@@ -130,31 +90,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         if self.socket.isConnected {
             print("Socket is connected")
 
-//        let jsonData = jsonToString(jsonDict: jsonDict)
-//        self.socket.write(string: jsonData)
 
-//            self.socket.write(string: "{\"m\":0,\"i\":2,\"n\":\"GetInstruments\",\"o\":\"{\\\"OMSId\\\":1}\"}")
-//            self.socket.write(string: "{\"m\":0,\"i\":20,\"n\":\"SubscribeTicker\",\"o\":\"{\\\"OMSId\\\":1,\\\"InstrumentId\\\": 2,\\\"Interval\\\":60,\\\"IncludeLastCount\\\":100}\"}")
-
-
-
-
-            let insideDictToString = jsonToString(x: insideDict)
-
-            let jsonDict:[String:Any] =
-                [
-                    "m": 0,
-                    "i": 20,
-                    "n":"SubscribeTicker",
-                    "o":insideDictToString
-            ]
-
-
-            let stringJson = jsonToString(x: jsonDict)
-
-            self.socket.write(string: stringJson)
-
-
+            let a = APIRequest.init()
+            self.socket.write(string: a.getBTCETH_1())
 
         }
     }
