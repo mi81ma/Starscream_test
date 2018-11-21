@@ -15,12 +15,32 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
 
     let socket = WebSocket(url: URL(string: "wss://api.bauhinia.me/WSGateway/")!)
 
+    var mySegLabel: Int = 0
+
+    var rowArray: Int = 0
+
+
+
     // UIPickerView.
     private var myUIPicker: UIPickerView!
 
-    // 表示する値の配列.
-    private let myValues: NSArray = ["BCH/BTC", "ETH/BTC","LTC/BTC", "DASH/BTC", "ETC/BTC", "REP/BTC", "GNT/BTC", "XRP/BTC", "CVC/BTC", "BCH/ETC", "ETC/ETH", "REP/ETH", "GNT/ETH", "LTC/XRP", "DASH/XRP"]
+    // PickerViewに表示する値の配列.
+    private let myValues: NSArray = ["BCH/BTC", "ETH/BTC","LTC/BTC", "DASH/BTC", "ETC/BTC", "REP/BTC", "GNT/BTC", "XMR/BTC", "CVC/BTC", "BCH/ETH", "ETC/ETH", "REP/ETH", "GNT/ETH", "LTC/XMR", "DASH/XMR"]
 
+
+    // SegmentControllerに表示する値の配列
+    private let myArray: NSArray = [
+//        "1 minute",
+//        "5 minute",
+//        "15 minute",
+//        "30 minute",
+        "1 hour",
+        "6 hour",
+        "12 hour",
+        "1 day",
+        "1 week",
+        "1 month"
+    ]
 
 
 // ****************************************************
@@ -29,7 +49,26 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = #colorLiteral(red: 0.5226045251, green: 0.8689554334, blue: 1, alpha: 1)
+        // Viewの背景色を白にする.
+        self.view.backgroundColor = UIColor.white
+
+
+        // ******************** Segment Controller *************************
+        // SegmentedControlを作成する.
+
+
+        let mySegemntController: UISegmentedControl = UISegmentedControl(items: myArray as [AnyObject])
+        mySegemntController.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height - 80)
+
+
+        // イベントを追加する.
+        mySegemntController.addTarget(self, action: #selector(ViewController.segconChanged(segcon:)), for: UIControl.Event.valueChanged)
+
+        // Viewに追加する.
+        self.view.addSubview(mySegemntController)
+
+
+         // ******************** UIPickerViewを *************************
 
         // UIPickerViewを生成.
         myUIPicker = UIPickerView()
@@ -48,7 +87,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
 
 
         // Starscream set
-        socket.delegate = self as! WebSocketDelegate
+        socket.delegate = self as WebSocketDelegate
+
     }
 
 
@@ -57,6 +97,26 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     // ****************************************************
 
 
+
+    // Segment Controllerが選択されたら、呼ばれるメソッド
+
+    @objc internal func segconChanged(segcon: UISegmentedControl){
+
+        mySegLabel = segcon.selectedSegmentIndex
+
+
+        if self.socket.isConnected {
+            print("Socket is connected")
+
+
+            //            let a = getETHBTC.init()
+            //            self.socket.write(string: a.getBTCETH_1d())
+
+            let a = getCVCBTC(intervalLabel: "\(myArray[mySegLabel])", instrunemtName: "\(myValues[rowArray])")
+            self.socket.write(string: a.getBTCETH_1m())
+        }
+
+    }
 
 
 //*********************************************
@@ -91,9 +151,14 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             print("Socket is connected")
 
 
-            let a = APIRequest.init()
-            self.socket.write(string: a.getBTCETH_1())
+//            let a = getETHBTC.init()
+//            self.socket.write(string: a.getBTCETH_1d())
 
+
+            rowArray = row
+
+            let a = getCVCBTC(intervalLabel: "\(myArray[mySegLabel])", instrunemtName: "\(myValues[rowArray])")
+            self.socket.write(string: a.getBTCETH_1m())
         }
     }
 

@@ -8,23 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		1F7D09C882B0030E2D40C123 /* Pods_Starscream_test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF1E67A871346F572F99EC3B /* Pods_Starscream_test.framework */; };
-		69413D4621A2A0C200204EF2 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69413D4521A2A0C200204EF2 /* APIRequest.swift */; };
+		69413D4621A2A0C200204EF2 /* getETHBTC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69413D4521A2A0C200204EF2 /* getETHBTC.swift */; };
 		695FA52521A27D73001F8D59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695FA52421A27D73001F8D59 /* AppDelegate.swift */; };
 		695FA52721A27D73001F8D59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695FA52621A27D73001F8D59 /* ViewController.swift */; };
 		695FA52C21A27D75001F8D59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 695FA52B21A27D75001F8D59 /* Assets.xcassets */; };
 		695FA52F21A27D75001F8D59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 695FA52D21A27D75001F8D59 /* LaunchScreen.storyboard */; };
+		69E47E5521A52DFE00C368E8 /* getCVCBTC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E47E5421A52DFE00C368E8 /* getCVCBTC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		206440B131C46BF48C481957 /* Pods-Starscream_test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Starscream_test.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Starscream_test/Pods-Starscream_test.debug.xcconfig"; sourceTree = "<group>"; };
 		516726BE6738BBB763E87F24 /* Pods-Starscream_test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Starscream_test.release.xcconfig"; path = "Pods/Target Support Files/Pods-Starscream_test/Pods-Starscream_test.release.xcconfig"; sourceTree = "<group>"; };
-		69413D4521A2A0C200204EF2 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		69413D4521A2A0C200204EF2 /* getETHBTC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getETHBTC.swift; sourceTree = "<group>"; };
 		695FA52121A27D73001F8D59 /* Starscream_test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Starscream_test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		695FA52421A27D73001F8D59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		695FA52621A27D73001F8D59 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		695FA52B21A27D75001F8D59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		695FA52E21A27D75001F8D59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		695FA53021A27D75001F8D59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69E47E5421A52DFE00C368E8 /* getCVCBTC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getCVCBTC.swift; sourceTree = "<group>"; };
 		DF1E67A871346F572F99EC3B /* Pods_Starscream_test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Starscream_test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -80,7 +82,8 @@
 			children = (
 				695FA52421A27D73001F8D59 /* AppDelegate.swift */,
 				695FA52621A27D73001F8D59 /* ViewController.swift */,
-				69413D4521A2A0C200204EF2 /* APIRequest.swift */,
+				69413D4521A2A0C200204EF2 /* getETHBTC.swift */,
+				69E47E5421A52DFE00C368E8 /* getCVCBTC.swift */,
 				695FA52B21A27D75001F8D59 /* Assets.xcassets */,
 				695FA52D21A27D75001F8D59 /* LaunchScreen.storyboard */,
 				695FA53021A27D75001F8D59 /* Info.plist */,
@@ -203,7 +206,8 @@
 			files = (
 				695FA52721A27D73001F8D59 /* ViewController.swift in Sources */,
 				695FA52521A27D73001F8D59 /* AppDelegate.swift in Sources */,
-				69413D4621A2A0C200204EF2 /* APIRequest.swift in Sources */,
+				69413D4621A2A0C200204EF2 /* getETHBTC.swift in Sources */,
+				69E47E5521A52DFE00C368E8 /* getCVCBTC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
