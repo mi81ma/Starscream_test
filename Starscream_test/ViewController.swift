@@ -12,8 +12,13 @@ import Starscream
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    var recieveMessage: String!
 
-    let socket = WebSocket(url: URL(string: "wss://api.bauhinia.me/WSGateway/")!)
+
+//    let socket = WebSocket(url: URL(string: "wss://api.bauhinia.me/WSGateway/")!)
+
+    // STAGING SITE
+let socket = WebSocket(url: URL(string: "wss://api_pure_staging.alphapoint.com/WSGateway/")!)
 
     var mySegLabel: Int = 0
 
@@ -192,13 +197,23 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
 
 
 
-    extension ViewController: WebSocketDelegate {
+extension ViewController: WebSocketDelegate {
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        print("got some data: \(data.count)")
+        print("data: \(data)")
+
+    }
+
+
+
         // MARK: Websocket Delegate Methods
 
         func websocketDidConnect(socket: WebSocketClient) {
             print("websocket is connected")
             // TODO: do socket.send()
         }
+
+
 
         func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
             if let e = error as? WSError {
@@ -210,21 +225,146 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             }
         }
 
+
+
         func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-            print("got some text: \(text)")
-            // TODO: decode it.
-        }
 
-        func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-            print("got some data: \(data.count)")
-            print("data: \(data)")
+// **********************************************
+//            change JSON to Doubel Array
+// **********************************************
+            print("got some text: \(String(describing: text))")
 
-        }
 
-}
+            // Change Type to DataType in order to use ".jsonObject" Method
+            let textData = text.data(using: .utf8)!
+
+
+
+            let dictionary = try! JSONSerialization.jsonObject(with: textData, options: .allowFragments) as! NSDictionary
+//            print(dictionary["o"])
+
+            let arry: Array =  dictionary.allValues
+            print(arry)
+            let NSstr = arry[2]
+            print(NSstr)
+
+            print(type(of: NSstr))
+
+
+
+
+
+////            print(str)
+////            print(type(of: str))
+//
+//            if let range = str.range(of: "[[") {
+//                str.replaceSubrange(range, with: "")
+//            }
+//
+//            if let range2 = str.range(of: "]]") {
+//                str.replaceSubrange(range2, with: "")
+//            }
+////            print(str)
+//
+//            var strArray:[String] = str.components(separatedBy: ",")
+////            print(strArray)
+//
+//            let doubleArray: [Double] = strArray.map{Double($0) ?? 0}
+//            print(doubleArray)
+
+// **********************************************
+
+
+
+
+
+
+            /*
+            Dictionary
+            */
+            let dictionary2 = try! JSONDecoder().decode([String:AnyDecodable].self, from: textData)
+            print(dictionary2)
+//            print(dictionary2.keys)
+//            let dicValue = dictionary2.values
+//            print(dicValue)
+
+            let o = dictionary2["o"]
+            let ArrayO :[Double] =  o as [Double]?
+
+
+
+
+            /*
+             Dictionary
+             */
+//            let dictionary2 = try! JSONDecoder().decode(InsideJson.self,from: textData)
+//            print(dictionary2)
+
+
+//            let dicValue = dictionary2.values
+//            print(dicValue)
+//
+//
+//
+//            let a = dictionary2["i"]!.value
+
+
+    }
 
     //*********************************************
     //        Starscream End
     //*********************************************
 
+}
 
+
+
+struct InsideJson :Codable {
+    var m :String
+    var i :Int
+    var n :String   // "function name"
+    var o :[Double]
+}
+
+
+
+extension InsideJson {
+    init?(dictionary :[String:Any]) {
+
+        guard let m = dictionary["m"] as? String,
+            let i = dictionary["i"] as? Int,
+            let n = dictionary["n"] as? String,
+            let o = dictionary["o"] as? [Double] else {
+                return nil
+        }
+
+        self.m = m
+        self.i = i
+        self.n = n
+        self.o = o
+
+    }
+}
+
+
+// ******************************************
+struct AnyDecodable : Decodable {
+    let value : Any
+
+    init<T>(_ value :T?) {
+        self.value = value ?? ()
+    }
+
+    init(from decoder :Decoder) throws {
+        let container = try decoder.singleValueContainer()
+
+        if let string = try? container.decode(String.self) {
+            self.init(string)
+        } else if let int = try? container.decode(Int.self) {
+            self.init(int)
+        } else {
+            self.init(())
+        }
+    }
+
+}
