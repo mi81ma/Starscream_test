@@ -15,10 +15,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var recieveMessage: String!
 
 
-//    let socket = WebSocket(url: URL(string: "wss://api.bauhinia.me/WSGateway/")!)
+    let socket = WebSocket(url: URL(string: "wss://api.bauhinia.me/WSGateway/")!)
 
     // STAGING SITE
-let socket = WebSocket(url: URL(string: "wss://api_pure_staging.alphapoint.com/WSGateway/")!)
+//let socket = WebSocket(url: URL(string: "wss://api_pure_staging.alphapoint.com/WSGateway/")!)
 
     var mySegLabel: Int = 0
 
@@ -282,28 +282,28 @@ extension ViewController: WebSocketDelegate {
             /*
             Dictionary
             */
-            let dictionary2 = try! JSONDecoder().decode([String:AnyDecodable].self, from: textData)
-            print(dictionary2)
+//            let dictionary2 = try! JSONDecoder().decode([String:AnyDecodable].self, from: textData)
+//            print(dictionary2)
 //            print(dictionary2.keys)
 //            let dicValue = dictionary2.values
 //            print(dicValue)
 
-            let o = dictionary2["o"]
-            let ArrayO :[Double] =  o as [Double]?
+//            let o = dictionary2["o"]
 
 
 
 
-            /*
-             Dictionary
-             */
+
+//            /*
+//             Dictionary
+//             */
 //            let dictionary2 = try! JSONDecoder().decode(InsideJson.self,from: textData)
 //            print(dictionary2)
-
-
-//            let dicValue = dictionary2.values
-//            print(dicValue)
 //
+//
+////            let dicValue = dictionary2.values
+//            print(dicValue)
+
 //
 //
 //            let a = dictionary2["i"]!.value
