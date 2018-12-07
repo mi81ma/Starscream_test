@@ -13,6 +13,7 @@ import Starscream
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     var recieveMessage: String!
+    var dropPrefixSuffix: String!
 
 
     let socket = WebSocket(url: URL(string: "wss://api.bauhinia.me/WSGateway/")!)
@@ -238,17 +239,116 @@ extension ViewController: WebSocketDelegate {
             // Change Type to DataType in order to use ".jsonObject" Method
             let textData = text.data(using: .utf8)!
 
+            print(text)
+
+            print(type(of: text))
+
+            // Cutting Start Index
+            let loc_o_first = text.index(text.index(of: "o")!, offsetBy: 5)
+            print(loc_o_first)
 
 
-            let dictionary = try! JSONSerialization.jsonObject(with: textData, options: .allowFragments) as! NSDictionary
-//            print(dictionary["o"])
 
-            let arry: Array =  dictionary.allValues
-            print(arry)
-            let NSstr = arry[2]
-            print(NSstr)
+            let subString_o_with_suffix = text.suffix(from: loc_o_first)
+            print(subString_o_with_suffix)
 
-            print(type(of: NSstr))
+
+            // Cutting End Index
+            let loc_o_last = subString_o_with_suffix.index(subString_o_with_suffix.endIndex, offsetBy: -3)
+            print(loc_o_last)
+
+            let sub_o_String = subString_o_with_suffix.prefix(upTo: loc_o_last)
+            print(sub_o_String)
+
+            var sub_o = sub_o_String
+
+            var count: Int = 0
+            var arrDouble = [[Double]]()
+
+
+            var lastParenticeIndex = sub_o.index(sub_o.index(of: "]")!, offsetBy: -1)
+            
+
+            while  sub_o.index(after: "]") is Character {
+//                while count < 3 {
+
+                lastParenticeIndex = sub_o.index(sub_o.index(of: "]")!, offsetBy: -1)
+                var subTex : String = String(sub_o.prefix(upTo: lastParenticeIndex))
+
+                subTex = String(subTex.dropFirst())
+                var subArr = subTex.components(separatedBy: ",")
+                var subArrDouble : [Double] = subArr.map {Double($0)!}
+
+                print(subArrDouble)
+                print(type(of: subArrDouble))
+
+
+                arrDouble.append(subArrDouble)
+
+                sub_o = subTex.suffix(from: sub_o.index(sub_o.index(of: "]")!, offsetBy: 2))
+                count += 1
+            }
+
+print(arrDouble)
+
+
+
+
+
+
+
+//            let dictionary = try! JSONSerialization.jsonObject(with: textData, options: .allowFragments) as! NSDictionary
+////            print(dictionary["o"])
+//
+//            let arry: Array =  dictionary.allValues
+//            print(arry)
+//            let cfString = arry[2]
+//
+//
+//
+//            print(cfString)
+//
+//            print(type(of: cfString))
+
+//
+//            // Convert from CFString to NSString
+//            let nsTypeString = cfString as! NSString
+//
+//            // Convert from NSStirng to SwiftString
+//            let swiftString:String = nsTypeString as String
+//
+//            print(swiftString)
+//            print(type(of: swiftString))
+//
+//
+//
+//            if swiftString.prefix(1) == "[" {
+//                dropPrefixSuffix = String(swiftString.dropFirst().dropLast())
+//            }
+//
+//            print(dropPrefixSuffix!)
+//
+//
+//            // 文字の位置を取得
+//            var loc = dropPrefixSuffix.firstIndex(of: "]")
+//            print(loc)
+//
+//            let number = dropPrefixSuffix.firstIndex(of: "[")
+//            print(number)
+//
+//            let number_indexof = dropPrefixSuffix.index(of: "[")
+//            print(number_indexof)
+
+
+//            var str01 : String
+//            while dropPrefixSuffix.firstIndex(of: "]") != dropPrefixSuffix.lastIndex(of: "]") {
+//                str01 = dropPrefixSuffix.removeSubrange(dropPrefixSuffix.firstIndex(of: "[")!...dropPrefixSuffix.firstIndex(of: "]")!)
+//            }
+
+
+
+
+
 
 
 
