@@ -16,10 +16,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var dropPrefixSuffix: String!
 
 // Real Site
-//    let socket = WebSocket(url: URL(string: "wss://api.bauhinia.me/WSGateway/")!)
+    let socket = WebSocket(url: URL(string: "wss://api.bauhinia.me/WSGateway/")!)
 
     // STAGING SITE
-let socket = WebSocket(url: URL(string: "wss://api_pure_staging.alphapoint.com/WSGateway/")!)
+//let socket = WebSocket(url: URL(string: "wss://api_pure_staging.alphapoint.com/WSGateway/")!)
 
     var mySegLabel: Int = 0
 
@@ -270,7 +270,7 @@ extension ViewController: WebSocketDelegate {
 
             sub_o = sub_o + "zz" // 文字列の末尾にzを追加
 
-            print(sub_o)
+            print("sub_o before while文 : \(sub_o)")
 
 
             while  true {
@@ -298,15 +298,10 @@ extension ViewController: WebSocketDelegate {
                     break
                 } else {
                     sub_o = suffix.dropFirst()
-                    print("if文のsub_o\(sub_o)")
-                    return
+                    print("if文のsub_o:  \(sub_o)")
                 }
 
-
-
                 count += 1
-
-                break
             }
 
 print(arrDouble)
