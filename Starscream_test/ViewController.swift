@@ -15,11 +15,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var recieveMessage: String!
     var dropPrefixSuffix: String!
 
-
-    let socket = WebSocket(url: URL(string: "wss://api.bauhinia.me/WSGateway/")!)
+// Real Site
+//    let socket = WebSocket(url: URL(string: "wss://api.bauhinia.me/WSGateway/")!)
 
     // STAGING SITE
-//let socket = WebSocket(url: URL(string: "wss://api_pure_staging.alphapoint.com/WSGateway/")!)
+let socket = WebSocket(url: URL(string: "wss://api_pure_staging.alphapoint.com/WSGateway/")!)
 
     var mySegLabel: Int = 0
 
@@ -233,24 +233,24 @@ extension ViewController: WebSocketDelegate {
 // **********************************************
 //            change JSON to Doubel Array
 // **********************************************
-            print("got some text: \(String(describing: text))")
+//            print("got some text: \(String(describing: text))")  // print got text
 
 
             // Change Type to DataType in order to use ".jsonObject" Method
-            let textData = text.data(using: .utf8)!
+//            let textData = text.data(using: .utf8)!
 
-            print(text)
+//            print(text)
 
-            print(type(of: text))
+//            print(type(of: text))
 
             // Cutting Start Index
             let loc_o_first = text.index(text.index(of: "o")!, offsetBy: 5)
-            print(loc_o_first)
+//            print(loc_o_first)
 
 
 
             let subString_o_with_suffix = text.suffix(from: loc_o_first)
-            print(subString_o_with_suffix)
+//            print(subString_o_with_suffix)
 
 
             // Cutting End Index
@@ -267,26 +267,46 @@ extension ViewController: WebSocketDelegate {
 
 
             var lastParenticeIndex = sub_o.index(sub_o.index(of: "]")!, offsetBy: -1)
-            
 
-            while  sub_o.index(after: "]") is Character {
-//                while count < 3 {
+            sub_o = sub_o + "zz" // 文字列の末尾にzを追加
+
+            print(sub_o)
+
+
+            while  true {
+
 
                 lastParenticeIndex = sub_o.index(sub_o.index(of: "]")!, offsetBy: -1)
                 var subTex : String = String(sub_o.prefix(upTo: lastParenticeIndex))
 
-                subTex = String(subTex.dropFirst())
-                var subArr = subTex.components(separatedBy: ",")
-                var subArrDouble : [Double] = subArr.map {Double($0)!}
+                subTex = String(subTex.dropFirst())  // "["を取り除く
 
-                print(subArrDouble)
+                var subArr = subTex.components(separatedBy: ",")  // ","で分けてArrayを作る
+
+                var subArrDouble : [Double] = subArr.map {Double($0)!}  // 部分Arrayの要素をDoubleに変換する
+
+                print("subArrDouble:\(subArrDouble)")
                 print(type(of: subArrDouble))
 
 
                 arrDouble.append(subArrDouble)
+                print("arrDouble: \(arrDouble), count:\(count)")
 
-                sub_o = subTex.suffix(from: sub_o.index(sub_o.index(of: "]")!, offsetBy: 2))
+
+                var suffix = String(sub_o.suffix(from: sub_o.index(sub_o.index(of: "]")!, offsetBy: 1)))
+                if suffix == "zz" {
+                    break
+                } else {
+                    sub_o = suffix.dropFirst()
+                    print("if文のsub_o\(sub_o)")
+                    return
+                }
+
+
+
                 count += 1
+
+                break
             }
 
 print(arrDouble)
