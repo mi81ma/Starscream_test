@@ -8,6 +8,7 @@
 
 import UIKit
 import Starscream
+import SwiftyJSON
 
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
@@ -15,10 +16,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     var recieveMessage: String!
     var dropPrefixSuffix: String!
 
-// Real Site
+//// Real Site
     let socket = WebSocket(url: URL(string: "wss://api.bauhinia.me/WSGateway/")!)
 
-    // STAGING SITE
+//     STAGING SITE
 //let socket = WebSocket(url: URL(string: "wss://api_pure_staging.alphapoint.com/WSGateway/")!)
 
     var mySegLabel: Int = 0
@@ -230,18 +231,27 @@ extension ViewController: WebSocketDelegate {
 
         func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
 
+
+            let json = text
+
+            if let data = json.data(using: .utf8) {
+                if let json = try? JSON(data: data) {
+                    for item in json["people"].arrayValue {
+                        print(item["o"].stringValue)
+                    }
+                }
+            }
+
 // **********************************************
 //            change JSON to Doubel Array
 // **********************************************
-//            print("got some text: \(String(describing: text))")  // print got text
+            print("got some text: \(String(describing: text))")  // print got text
 
 
             // Change Type to DataType in order to use ".jsonObject" Method
 //            let textData = text.data(using: .utf8)!
 
-//            print(text)
 
-//            print(type(of: text))
 
             // Cutting Start Index
             let loc_o_first = text.index(text.index(of: "o")!, offsetBy: 5)
@@ -255,10 +265,10 @@ extension ViewController: WebSocketDelegate {
 
             // Cutting End Index
             let loc_o_last = subString_o_with_suffix.index(subString_o_with_suffix.endIndex, offsetBy: -3)
-            print(loc_o_last)
+//            print(loc_o_last)
 
             let sub_o_String = subString_o_with_suffix.prefix(upTo: loc_o_last)
-            print(sub_o_String)
+//            print(sub_o_String)
 
             var sub_o = sub_o_String
 
@@ -270,7 +280,7 @@ extension ViewController: WebSocketDelegate {
 
             sub_o = sub_o + "zz" // 文字列の末尾にzを追加
 
-            print("sub_o before while文 : \(sub_o)")
+//            print("sub_o before while文 : \(sub_o)")
 
 
             while  true {
@@ -285,12 +295,12 @@ extension ViewController: WebSocketDelegate {
 
                 var subArrDouble : [Double] = subArr.map {Double($0)!}  // 部分Arrayの要素をDoubleに変換する
 
-                print("subArrDouble:\(subArrDouble)")
-                print(type(of: subArrDouble))
+//                print("subArrDouble:\(subArrDouble)")
+//                print(type(of: subArrDouble))
 
 
                 arrDouble.append(subArrDouble)
-                print("arrDouble: \(arrDouble), count:\(count)")
+//                print("arrDouble: \(arrDouble), count:\(count)")
 
 
                 var suffix = String(sub_o.suffix(from: sub_o.index(sub_o.index(of: "]")!, offsetBy: 1)))
@@ -298,130 +308,18 @@ extension ViewController: WebSocketDelegate {
                     break
                 } else {
                     sub_o = suffix.dropFirst()
-                    print("if文のsub_o:  \(sub_o)")
+//                    print("if文のsub_o:  \(sub_o)")
                 }
-
                 count += 1
             }
 
 print(arrDouble)
 
-
-
-
-
-
-
-//            let dictionary = try! JSONSerialization.jsonObject(with: textData, options: .allowFragments) as! NSDictionary
-////            print(dictionary["o"])
 //
-//            let arry: Array =  dictionary.allValues
-//            print(arry)
-//            let cfString = arry[2]
-//
-//
-//
-//            print(cfString)
-//
-//            print(type(of: cfString))
+//            // **********************************************
+//            //           END change JSON to Doubel Array
+//            // **********************************************
 
-//
-//            // Convert from CFString to NSString
-//            let nsTypeString = cfString as! NSString
-//
-//            // Convert from NSStirng to SwiftString
-//            let swiftString:String = nsTypeString as String
-//
-//            print(swiftString)
-//            print(type(of: swiftString))
-//
-//
-//
-//            if swiftString.prefix(1) == "[" {
-//                dropPrefixSuffix = String(swiftString.dropFirst().dropLast())
-//            }
-//
-//            print(dropPrefixSuffix!)
-//
-//
-//            // 文字の位置を取得
-//            var loc = dropPrefixSuffix.firstIndex(of: "]")
-//            print(loc)
-//
-//            let number = dropPrefixSuffix.firstIndex(of: "[")
-//            print(number)
-//
-//            let number_indexof = dropPrefixSuffix.index(of: "[")
-//            print(number_indexof)
-
-
-//            var str01 : String
-//            while dropPrefixSuffix.firstIndex(of: "]") != dropPrefixSuffix.lastIndex(of: "]") {
-//                str01 = dropPrefixSuffix.removeSubrange(dropPrefixSuffix.firstIndex(of: "[")!...dropPrefixSuffix.firstIndex(of: "]")!)
-//            }
-
-
-
-
-
-
-
-
-
-
-////            print(str)
-////            print(type(of: str))
-//
-//            if let range = str.range(of: "[[") {
-//                str.replaceSubrange(range, with: "")
-//            }
-//
-//            if let range2 = str.range(of: "]]") {
-//                str.replaceSubrange(range2, with: "")
-//            }
-////            print(str)
-//
-//            var strArray:[String] = str.components(separatedBy: ",")
-////            print(strArray)
-//
-//            let doubleArray: [Double] = strArray.map{Double($0) ?? 0}
-//            print(doubleArray)
-
-// **********************************************
-
-
-
-
-
-
-            /*
-            Dictionary
-            */
-//            let dictionary2 = try! JSONDecoder().decode([String:AnyDecodable].self, from: textData)
-//            print(dictionary2)
-//            print(dictionary2.keys)
-//            let dicValue = dictionary2.values
-//            print(dicValue)
-
-//            let o = dictionary2["o"]
-
-
-
-
-
-//            /*
-//             Dictionary
-//             */
-//            let dictionary2 = try! JSONDecoder().decode(InsideJson.self,from: textData)
-//            print(dictionary2)
-//
-//
-////            let dicValue = dictionary2.values
-//            print(dicValue)
-
-//
-//
-//            let a = dictionary2["i"]!.value
 
 
     }
@@ -433,33 +331,6 @@ print(arrDouble)
 }
 
 
-
-struct InsideJson :Codable {
-    var m :String
-    var i :Int
-    var n :String   // "function name"
-    var o :[Double]
-}
-
-
-
-extension InsideJson {
-    init?(dictionary :[String:Any]) {
-
-        guard let m = dictionary["m"] as? String,
-            let i = dictionary["i"] as? Int,
-            let n = dictionary["n"] as? String,
-            let o = dictionary["o"] as? [Double] else {
-                return nil
-        }
-
-        self.m = m
-        self.i = i
-        self.n = n
-        self.o = o
-
-    }
-}
 
 
 // ******************************************
